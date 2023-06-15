@@ -2,109 +2,256 @@
 export default {
   data() {
     return {
-      truckPlate: "",
-      trailerPlate: "",
-      departureDate: "",
-      loadingPlace: "",
-      unloadingPlace: "",
-      freight: "",
-      paymentDate: "",
-      received: "",
-      remaining: "",
-      returnDate: "",
-      returnLoadingPlace: "",
-      returnUnloadingPlace: "",
-      returnFreight: "",
-      returnPaymentDate: "",
-      returnReceived: "",
-      returnRemaining: ""
+      truckPlate: '',
+      trailerPlate: '',
+      departureDate: '',
+      loadingPlace: '',
+      unloadingPlace: '',
+      freight: '',
+      paymentDate: '',
+      received: '',
+      remaining: '',
+      returnDate: '',
+      returnLoadingPlace: '',
+      returnUnloadingPlace: '',
+      returnFreight: '',
+      returnPaymentDate: '',
+      returnReceived: '',
+      returnRemaining: ''
     }
   }
 }
 </script>
 
 <template>
-<form class="form" @submit.prevent="onSubmit">
-  <h1>Sefer Bilgileri</h1>
+  <h1 class="title">Sefer Bilgileri</h1>
+  <!-- <h1 class="title">Sefer Bilgileri</h1> -->
+  <form class="form" @submit.prevent="onSubmit">
+    <!-- Beginning of left column of the form -->
+    <div class="form__column-left">
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="truck-plate">Çekici plaka</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="truck-plate"
+          v-model="truckPlate"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="trailer_plate">Dorse plaka</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="trailer_plate"
+          v-model="trailerPlate"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="departure-date">Çıkış tarihi</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="departure-date"
+          v-model="departureDate"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="loading-place">Yükleme yeri</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="loading-place"
+          v-model="loadingPlace"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="unloading-place">Boşaltma yeri</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="unloading-place"
+          v-model="unloadingPlace"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="freight">Navlun</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="freight"
+          v-model="freight"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="payment-date">Ödeme tarihi</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="payment-date"
+          v-model="paymentDate"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="received">Alınan</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="received"
+          v-model="received"
+        />
+      </div>
+      <div class="form__column-left__element">
+        <label class="form__column-left__element__label" for="remaining">Kalan</label>
+        <input
+          class="form__column-left__element__input"
+          type="text"
+          id="remaining"
+          v-model="remaining"
+        />
+      </div>
+    </div>
+    <!-- Ending of left column of the form -->
 
-  <!-- Beginning of left column of the form -->
-  <div class="form__left-column">
-    <div class="form__left-column__element">
-      <label for="truck-plate">Çekici plaka</label>
-      <input type="text" id="truck-plate" v-model="cekiciPlaka">
+    <!-- Beginning of right column of the form -->
+    <div class="form__column-right">
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-date">Dönüş tarihi</label>
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-date"
+          v-model="returnDate"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-loading-place"
+          >Yükleme yeri</label
+        >
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-loading-place"
+          v-model="returnLoadingPlace"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-unloading-place"
+          >Boşaltma yeri</label
+        >
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-unloading-place"
+          v-model="returnUnloadingPlace"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-freight">Navlun</label>
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-freight"
+          v-model="returnFreight"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-payment-date"
+          >Ödeme tarihi</label
+        >
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-payment-date"
+          v-model="returnPaymentDate"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-received">Alınan</label>
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-received"
+          v-model="returnReceived"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <label class="form__column-right__element__label" for="return-remaining">Kalan</label>
+        <input
+          class="form__column-right__element__input"
+          type="text"
+          id="return-remaining"
+          v-model="returnRemaining"
+        />
+      </div>
+      <div class="form__column-right__element">
+        <button class="form__column-right__element__button">GONDER</button>
+      </div>
     </div>
-    <div class="form__left-column__element">
-      <label for="trailer_plate">Dorse plaka</label>
-      <input type="text" id="trailer_plate" v-model="trailerPlate">
-    </div>
-    <div class="form__left-column__element">
-      <label for="departure-date">Çıkış tarihi</label>
-      <input type="text" id="departure-date" v-model="departureDate">
-    </div>
-    <div class="form__left-column__element">
-      <label for="loading-place">Yükleme yeri</label>
-      <input type="text" id="loading-place" v-model="loadingPlace">
-    </div>
-    <div class="form__left-column__element">
-      <label for="unloading-place">Boşaltma yeri</label>
-      <input type="text" id="unloading-place" v-model="unloadingPlace">
-    </div>
-    <div class="form__left-column__element">
-      <label for="freight">Navlun</label>
-      <input type="text" id="freight" v-model="freight">
-    </div>
-    <div class="form__left-column__element">
-      <label for="payment-date">Ödeme tarihi</label>
-      <input type="text" id="payment-date" v-model="paymentDate">
-    </div>
-    <div class="form__left-column__element">
-      <label for="received">Alınan</label>
-      <input type="text" id="received" v-model="received">
-    </div>
-    <div class="form__left-column__element">
-      <label for="remaining">Kalan</label>
-      <input type="text" id="remaining" v-model="remaining">
-    </div>
-  </div>
-  <!-- Ending of left column of the form -->
-
-  <!-- Beginning of right column of the form -->
-  <div class="form__right-column">    
-    <div class="form__right-column__element">
-      <label for="return-date">Dönüş tarihi</label>
-      <input type="text" id="return-date" v-model="returnDate">
-    </div>
-    <div class="form__right-column__element">
-      <label for="return-loading-place">Yükleme yeri</label>
-      <input type="text" id="return-loading-place" v-model="returnLoadingPlace">
-    </div>
-    <div class="form__right-column__element">
-      <label for="return-unloading-place">Boşaltma yeri</label>
-      <input type="text" id="return-unloading-place" v-model="returnUnloadingPlace">
-    </div>
-    <div class="form__right-column__element">
-      <label for="return-freight">Navlun</label>
-      <input type="text" id="return-freight" v-model="returnFreight">
-    </div>
-    <div class="form__right-column__element">
-      <label for="return-payment-date">Ödeme tarihi</label>
-      <input type="text" id="return-payment-date" v-model="returnPaymentDate">
-    </div>
-    <div class="form__right-column__element">
-      <label for="return-received">Alınan</label>
-      <input type="text" id="return-received" v-model="returnReceived">
-    </div>
-    <div class="form__right-column__element">
-      <label for="return-remaining">Kalan</label>
-      <input type="text" id="return-remaining" v-model="returnRemaining">
-    </div>
-  </div>
-  <!-- Ending of right column of the form -->
-</form>
-
+    <!-- Ending of right column of the form -->
+  </form>
 </template>
 
 <style scoped>
+.title {
+  text-align: center;
+  font-weight: 300;
+  font-size: 32px;
+  padding: 20px 0;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.form__column-left__element,
+.form__column-right__element {
+  display: flex;
+  flex-direction: column;
+}
 
+.form__column-left__element {
+  margin-right: 1em;
+}
+
+.form__column-right__element {
+  margin-left: 1em;
+}
+
+.form__column-left__element:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.form__column-right__element:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.form__column-left__element__label,
+.form__column-right__element__label {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.form__column-left__element__input,
+.form__column-right__element__input {
+  width: 168px;
+  height: 28px;
+  background-color: rgba(213, 213, 213, 0.4);
+  border-radius: 2px;
+
+}
+
+.form__column-right__element__button {
+  width: 80px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: rgba(183, 183, 183, 0.6);
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 auto;
+}
+
+.form__column-right__element__button:hover {
+  background-color: rgba(59, 131, 100, 0.8);
+}
 </style>
