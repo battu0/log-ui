@@ -2,13 +2,13 @@
 export default {
   data() {
     return {
-      freightInfo: [
+      freight: [
         { truckPlate: '' },
         { trailerPlate: '' },
         { departureDate: '' },
         { loadingPlace: '' },
         { unloadingPlace: '' },
-        { freight: '' },
+        { freightPrice: '' },
         { paymentDate: '' },
         { received: '' },
         { remaining: '' },
@@ -20,6 +20,52 @@ export default {
         { returnReceived: '' },
         { returnRemaining: '' }
       ]
+    }
+  },
+  methods: {
+    onSubmit() {
+      if (!(Object.keys(this.freight))) {
+        alert('Please fill out every field.')
+        return
+      }
+
+      let freightInfo = {
+        truckPlate: this.truckPlate,
+        trailerPlate: this.trailerPlate,
+        departureDate: this.departureDate,
+        loadingPlace: this.loadingPlace,
+        unloadingPlace: this.unloadingPlace,
+        freightPrice: this.freightPrice,
+        paymentDate: this.paymentDate,
+        received: this.received,
+        remaining: this.remaining,
+        returnDate: this.returnDate,
+        returnLoadingPlace: this.returnLoadingPlace,
+        returnUnloadingPlace: this.returnUnloadingPlace,
+        returnFreight: this.returnFreight,
+        returnPaymentDate: this.returnPaymentDate,
+        returnReceived: this.returnReceived,
+        returnRemaining: this.returnRemaining
+
+      }
+      this.$emit('freightInfoSubmitted', freightInfo)
+
+      this.truckPlate = ''
+      this.trailerPlate = ''
+      this.departureDate = ''
+      this.loadingPlace = ''
+      this.unloadingPlace = ''
+      this.freightPrice = ''
+      this.paymentDate = ''
+      this.received = ''
+      this.remaining = ''
+      this.returnDate = ''
+      this.returnLoadingPlace = ''
+      this.returnUnloadingPlace = ''
+      this.returnFreight = ''
+      this.returnPaymentDate = ''
+      this.returnReceived = ''
+      this.returnRemaining = ''
     }
   }
 }
@@ -37,7 +83,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="truck-plate"
-          v-model="freightInfo.truckPlate"
+          v-model="freight.truckPlate"
         />
       </div>
       <div class="form__column-left__element">
@@ -46,7 +92,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="trailer_plate"
-          v-model="freightInfo.trailerPlate"
+          v-model="freight.trailerPlate"
         />
       </div>
       <div class="form__column-left__element">
@@ -55,7 +101,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="departure-date"
-          v-model="freightInfo.departureDate"
+          v-model="freight.departureDate"
         />
       </div>
       <div class="form__column-left__element">
@@ -64,7 +110,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="loading-place"
-          v-model="freightInfo.loadingPlace"
+          v-model="freight.loadingPlace"
         />
       </div>
       <div class="form__column-left__element">
@@ -73,7 +119,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="unloading-place"
-          v-model="freightInfo.unloadingPlace"
+          v-model="freight.unloadingPlace"
         />
       </div>
       <div class="form__column-left__element">
@@ -82,7 +128,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="freight"
-          v-model="freightInfo.freight"
+          v-model="freight.freight"
         />
       </div>
       <div class="form__column-left__element">
@@ -91,7 +137,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="payment-date"
-          v-model="freightInfo.paymentDate"
+          v-model="freight.paymentDate"
         />
       </div>
       <div class="form__column-left__element">
@@ -100,7 +146,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="received"
-          v-model="freightInfo.received"
+          v-model="freight.received"
         />
       </div>
       <div class="form__column-left__element">
@@ -109,7 +155,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="remaining"
-          v-model="freightInfo.remaining"
+          v-model="freight.remaining"
         />
       </div>
     </div>
@@ -123,7 +169,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-date"
-          v-model="freightInfo.returnDate"
+          v-model="freight.returnDate"
         />
       </div>
       <div class="form__column-right__element">
@@ -134,7 +180,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-loading-place"
-          v-model="freightInfo.returnLoadingPlace"
+          v-model="freight.returnLoadingPlace"
         />
       </div>
       <div class="form__column-right__element">
@@ -145,7 +191,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-unloading-place"
-          v-model="freightInfo.returnUnloadingPlace"
+          v-model="freight.returnUnloadingPlace"
         />
       </div>
       <div class="form__column-right__element">
@@ -154,7 +200,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-freight"
-          v-model="freightInfo.returnFreight"
+          v-model="freight.returnFreight"
         />
       </div>
       <div class="form__column-right__element">
@@ -165,7 +211,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-payment-date"
-          v-model="freightInfo.returnPaymentDate"
+          v-model="freight.returnPaymentDate"
         />
       </div>
       <div class="form__column-right__element">
@@ -174,7 +220,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-received"
-          v-model="freightInfo.returnReceived"
+          v-model="freight.returnReceived"
         />
       </div>
       <div class="form__column-right__element">
@@ -183,7 +229,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-remaining"
-          v-model="freightInfo.returnRemaining"
+          v-model="freight.returnRemaining"
         />
       </div>
       <div class="form__column-right__element">
