@@ -1,15 +1,15 @@
 <script>
-import Form from './components/Form.vue';
+import FreightForm from './components/FreightForm.vue'
 
 export default {
   components: {
-    Form
-  },
+    FreightForm,
+}
 }
 </script>
 
 <template>
   <main>
-    <Form></Form>
+    <FreightForm></FreightForm>
   </main>
 </template>

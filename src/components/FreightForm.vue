@@ -5,30 +5,29 @@ export default {
     return {
       freightInfo: {
         truckPlate: '',
-        trailerPlate: '' ,
-        departureDate: '' ,
-        loadingPlace: '' ,
-        unloadingPlace: '' ,
-        freightPrice: '' ,
-        paymentDate: '' ,
-        received: '' ,
-        remaining: '' ,
-        returnDate: '' ,
-        returnLoadingPlace: '' ,
-        returnUnloadingPlace: '' ,
-        returnFreight: '' ,
-        returnPaymentDate: '' ,
-        returnReceived: '' ,
-        returnRemaining: ''  
+        trailerPlate: '',
+        departureDate: '',
+        loadingPlace: '',
+        unloadingPlace: '',
+        freightPrice: '',
+        paymentDate: '',
+        received: '',
+        remaining: '',
+        returnDate: '',
+        returnLoadingPlace: '',
+        returnUnloadingPlace: '',
+        returnFreight: '',
+        returnPaymentDate: '',
+        returnReceived: '',
+        returnRemaining: ''
       }
-      
     }
   },
   methods: {
     sendForm() {
-      console.log(freightInfo)  
+      console.log(this.freightInfo)
     }
-  },
+  }
 }
 </script>
 
@@ -194,7 +193,9 @@ export default {
         />
       </div>
       <div class="form__column-right__element">
-        <button class="form__column-right__element__button" type="submit" value="Submit">GONDER</button>
+        <button class="form__column-right__element__button" type="submit" value="Submit">
+          GONDER
+        </button>
       </div>
     </div>
     <!-- Ending of right column of the form -->
