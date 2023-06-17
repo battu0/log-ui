@@ -1,80 +1,41 @@
 <script>
+// import axios from 'axios'
 export default {
   data() {
     return {
-      freight: [
-        { truckPlate: '' },
-        { trailerPlate: '' },
-        { departureDate: '' },
-        { loadingPlace: '' },
-        { unloadingPlace: '' },
-        { freightPrice: '' },
-        { paymentDate: '' },
-        { received: '' },
-        { remaining: '' },
-        { returnDate: '' },
-        { returnLoadingPlace: '' },
-        { returnUnloadingPlace: '' },
-        { returnFreight: '' },
-        { returnPaymentDate: '' },
-        { returnReceived: '' },
-        { returnRemaining: '' }
-      ]
+      freightInfo: {
+        truckPlate: '',
+        trailerPlate: '' ,
+        departureDate: '' ,
+        loadingPlace: '' ,
+        unloadingPlace: '' ,
+        freightPrice: '' ,
+        paymentDate: '' ,
+        received: '' ,
+        remaining: '' ,
+        returnDate: '' ,
+        returnLoadingPlace: '' ,
+        returnUnloadingPlace: '' ,
+        returnFreight: '' ,
+        returnPaymentDate: '' ,
+        returnReceived: '' ,
+        returnRemaining: ''  
+      }
+      
     }
   },
   methods: {
-    onSubmit() {
-      if (!(Object.keys(this.freight))) {
-        alert('Please fill out every field.')
-        return
-      }
-
-      let freightInfo = {
-        truckPlate: this.truckPlate,
-        trailerPlate: this.trailerPlate,
-        departureDate: this.departureDate,
-        loadingPlace: this.loadingPlace,
-        unloadingPlace: this.unloadingPlace,
-        freightPrice: this.freightPrice,
-        paymentDate: this.paymentDate,
-        received: this.received,
-        remaining: this.remaining,
-        returnDate: this.returnDate,
-        returnLoadingPlace: this.returnLoadingPlace,
-        returnUnloadingPlace: this.returnUnloadingPlace,
-        returnFreight: this.returnFreight,
-        returnPaymentDate: this.returnPaymentDate,
-        returnReceived: this.returnReceived,
-        returnRemaining: this.returnRemaining
-
-      }
-      this.$emit('freightInfoSubmitted', freightInfo)
-
-      this.truckPlate = ''
-      this.trailerPlate = ''
-      this.departureDate = ''
-      this.loadingPlace = ''
-      this.unloadingPlace = ''
-      this.freightPrice = ''
-      this.paymentDate = ''
-      this.received = ''
-      this.remaining = ''
-      this.returnDate = ''
-      this.returnLoadingPlace = ''
-      this.returnUnloadingPlace = ''
-      this.returnFreight = ''
-      this.returnPaymentDate = ''
-      this.returnReceived = ''
-      this.returnRemaining = ''
+    sendForm() {
+      console.log(freightInfo)  
     }
-  }
+  },
 }
 </script>
 
 <template>
   <h1 class="title">Sefer Bilgileri</h1>
   <!-- <h1 class="title">Sefer Bilgileri</h1> -->
-  <form class="form" @submit.prevent="onSubmit">
+  <form class="form" @submit.prevent="sendForm">
     <!-- Beginning of left column of the form -->
     <div class="form__column-left">
       <div class="form__column-left__element">
@@ -83,7 +44,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="truck-plate"
-          v-model="freight.truckPlate"
+          v-model="truckPlate"
         />
       </div>
       <div class="form__column-left__element">
@@ -92,7 +53,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="trailer_plate"
-          v-model="freight.trailerPlate"
+          v-model="trailerPlate"
         />
       </div>
       <div class="form__column-left__element">
@@ -101,7 +62,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="departure-date"
-          v-model="freight.departureDate"
+          v-model="departureDate"
         />
       </div>
       <div class="form__column-left__element">
@@ -110,7 +71,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="loading-place"
-          v-model="freight.loadingPlace"
+          v-model="loadingPlace"
         />
       </div>
       <div class="form__column-left__element">
@@ -119,7 +80,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="unloading-place"
-          v-model="freight.unloadingPlace"
+          v-model="unloadingPlace"
         />
       </div>
       <div class="form__column-left__element">
@@ -128,7 +89,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="freight"
-          v-model="freight.freight"
+          v-model="freightPrice"
         />
       </div>
       <div class="form__column-left__element">
@@ -137,7 +98,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="payment-date"
-          v-model="freight.paymentDate"
+          v-model="paymentDate"
         />
       </div>
       <div class="form__column-left__element">
@@ -146,7 +107,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="received"
-          v-model="freight.received"
+          v-model="received"
         />
       </div>
       <div class="form__column-left__element">
@@ -155,7 +116,7 @@ export default {
           class="form__column-left__element__input"
           type="text"
           id="remaining"
-          v-model="freight.remaining"
+          v-model="remaining"
         />
       </div>
     </div>
@@ -169,7 +130,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-date"
-          v-model="freight.returnDate"
+          v-model="returnDate"
         />
       </div>
       <div class="form__column-right__element">
@@ -180,7 +141,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-loading-place"
-          v-model="freight.returnLoadingPlace"
+          v-model="returnLoadingPlace"
         />
       </div>
       <div class="form__column-right__element">
@@ -191,7 +152,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-unloading-place"
-          v-model="freight.returnUnloadingPlace"
+          v-model="returnUnloadingPlace"
         />
       </div>
       <div class="form__column-right__element">
@@ -200,7 +161,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-freight"
-          v-model="freight.returnFreight"
+          v-model="returnFreight"
         />
       </div>
       <div class="form__column-right__element">
@@ -211,7 +172,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-payment-date"
-          v-model="freight.returnPaymentDate"
+          v-model="returnPaymentDate"
         />
       </div>
       <div class="form__column-right__element">
@@ -220,7 +181,7 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-received"
-          v-model="freight.returnReceived"
+          v-model="returnReceived"
         />
       </div>
       <div class="form__column-right__element">
@@ -229,11 +190,11 @@ export default {
           class="form__column-right__element__input"
           type="text"
           id="return-remaining"
-          v-model="freight.returnRemaining"
+          v-model="returnRemaining"
         />
       </div>
       <div class="form__column-right__element">
-        <button class="form__column-right__element__button">GONDER</button>
+        <button class="form__column-right__element__button" type="submit" value="Submit">GONDER</button>
       </div>
     </div>
     <!-- Ending of right column of the form -->
