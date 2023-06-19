@@ -3,29 +3,61 @@
 export default {
   data() {
     return {
-      freightInfo: {
-        truckPlate: '',
-        trailerPlate: '',
-        departureDate: '',
-        loadingPlace: '',
-        unloadingPlace: '',
-        freightPrice: '',
-        paymentDate: '',
-        received: '',
-        remaining: '',
-        returnDate: '',
-        returnLoadingPlace: '',
-        returnUnloadingPlace: '',
-        returnFreight: '',
-        returnPaymentDate: '',
-        returnReceived: '',
-        returnRemaining: ''
-      }
+      truckPlate: '',
+      trailerPlate: '',
+      departureDate: '',
+      loadingPlace: '',
+      unloadingPlace: '',
+      freightPrice: '',
+      paymentDate: '',
+      received: '',
+      remaining: '',
+      returnDate: '',
+      returnLoadingPlace: '',
+      returnUnloadingPlace: '',
+      returnFreight: '',
+      returnPaymentDate: '',
+      returnReceived: '',
+      returnRemaining: ''
     }
   },
   methods: {
     sendForm() {
-      console.log(this.freightInfo)
+
+      let freightInfo = {
+        truckPlate: this.truckPlate,
+        trailerPlate: this.trailerPlate,
+        departureDate: this.departureDate,
+        loadingPlace: this.loadingPlace,
+        unloadingPlace: this.unloadingPlace,
+        freightPrice: this.freightPrice,
+        paymentDate: this.paymentDate,
+        received: this.received,
+        remaining: this.remaining,
+        returnDate: this.returnDate,
+        returnLoadingPlace: this.returnLoadingPlace,
+        returnUnloadingPlace: this.returnUnloadingPlace,
+        returnFreight: this.returnFreight,
+        returnPaymentDate: this.returnPaymentDate,
+        returnReceived: this.returnReceived,
+        returnRemaining: this.returnRemaining
+      }
+
+      const requestOptions = {
+        method: 'POST',
+        body: new FormData(freightInfo)
+      }
+
+      console.log(freightInfo)
+      console.log('***')
+
+      fetch(import.meta.env.VITE_MACRO_URL, requestOptions)
+      .then(function(response) {
+        console.log('Success', response)
+      })
+      .catch(function(err) {
+        console.log('Err', err)
+      })
     }
   }
 }
