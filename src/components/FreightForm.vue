@@ -23,57 +23,31 @@ export default {
   },
   methods: {
     sendForm() {
-
-      let freightInfo = {
-        truckPlate: this.truckPlate,
-        trailerPlate: this.trailerPlate,
-        departureDate: this.departureDate,
-        loadingPlace: this.loadingPlace,
-        unloadingPlace: this.unloadingPlace,
-        freightPrice: this.freightPrice,
-        paymentDate: this.paymentDate,
-        received: this.received,
-        remaining: this.remaining,
-        returnDate: this.returnDate,
-        returnLoadingPlace: this.returnLoadingPlace,
-        returnUnloadingPlace: this.returnUnloadingPlace,
-        returnFreight: this.returnFreight,
-        returnPaymentDate: this.returnPaymentDate,
-        returnReceived: this.returnReceived,
-        returnRemaining: this.returnRemaining
-      }
-
-      const requestOptions = {
+      const form = document.forms['submit-to-google-sheet']
+      fetch(import.meta.env.VITE_MACRO_URL, {
         method: 'POST',
-        body: new FormData(freightInfo)
-      }
-
-      console.log(freightInfo)
-      console.log('***')
-
-      fetch(import.meta.env.VITE_MACRO_URL, requestOptions)
-      .then(function(response) {
-        console.log('Success', response)
+        body: new FormData(form)
       })
-      .catch(function(err) {
-        console.log('Err', err)
-      })
+        .then((res) => {
+          console.log('success', res)
+        })
+        .catch((err) => {
+          console.log('error', err)
+        })
     }
   }
 }
 </script>
-
 <template>
   <h1 class="title">Sefer Bilgileri</h1>
-  <!-- <h1 class="title">Sefer Bilgileri</h1> -->
-  <form class="form" @submit.prevent="sendForm">
-    <!-- Beginning of left column of the form -->
+  <form name="submit-to-google-sheet" class="form" @submit.prevent="sendForm">
     <div class="form__column-left">
       <div class="form__column-left__element">
         <label class="form__column-left__element__label" for="truck-plate">Çekici plaka</label>
         <input
           class="form__column-left__element__input"
           type="text"
+          name="truckPlate"
           id="truck-plate"
           v-model="truckPlate"
         />
@@ -83,6 +57,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="trailerPlate"
           id="trailer_plate"
           v-model="trailerPlate"
         />
@@ -92,6 +67,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="departureDate"
           id="departure-date"
           v-model="departureDate"
         />
@@ -101,6 +77,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="loadingPlace"
           id="loading-place"
           v-model="loadingPlace"
         />
@@ -110,6 +87,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="unloadingPlace"
           id="unloading-place"
           v-model="unloadingPlace"
         />
@@ -119,6 +97,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="freightPrice"
           id="freight"
           v-model="freightPrice"
         />
@@ -127,7 +106,8 @@ export default {
         <label class="form__column-left__element__label" for="payment-date">Ödeme tarihi</label>
         <input
           class="form__column-left__element__input"
-          type="text"
+          type="date"
+          name="paymentDate"
           id="payment-date"
           v-model="paymentDate"
         />
@@ -137,6 +117,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="received"
           id="received"
           v-model="received"
         />
@@ -146,6 +127,7 @@ export default {
         <input
           class="form__column-left__element__input"
           type="text"
+          name="remaining"
           id="remaining"
           v-model="remaining"
         />
@@ -160,6 +142,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnDate"
           id="return-date"
           v-model="returnDate"
         />
@@ -171,6 +154,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnLoadingPlace"
           id="return-loading-place"
           v-model="returnLoadingPlace"
         />
@@ -182,6 +166,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnUnloadingPlace"
           id="return-unloading-place"
           v-model="returnUnloadingPlace"
         />
@@ -191,6 +176,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnFreight"
           id="return-freight"
           v-model="returnFreight"
         />
@@ -202,6 +188,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnPaymentDate"
           id="return-payment-date"
           v-model="returnPaymentDate"
         />
@@ -211,6 +198,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnReceived"
           id="return-received"
           v-model="returnReceived"
         />
@@ -220,6 +208,7 @@ export default {
         <input
           class="form__column-right__element__input"
           type="text"
+          name="returnRemaining"
           id="return-remaining"
           v-model="returnRemaining"
         />
@@ -230,7 +219,6 @@ export default {
         </button>
       </div>
     </div>
-    <!-- Ending of right column of the form -->
   </form>
 </template>
 
