@@ -1,5 +1,5 @@
 <script>
-// import axios from 'axios'
+import countryDataJSON from 'country-region-data/data.json'
 export default {
   data() {
     return {
@@ -18,7 +18,8 @@ export default {
       returnFreight: '',
       returnPaymentDate: '',
       returnReceived: '',
-      returnRemaining: ''
+      returnRemaining: '',
+      countryRegionList: []
     }
   },
   methods: {
@@ -34,7 +35,16 @@ export default {
         .catch((err) => {
           console.log('error', err)
         })
+    },
+    loadCities() {
+      fetch()
     }
+  },
+  mounted() {
+    this.countryRegionList = countryDataJSON
+    console.log(countryDataJSON)
+    console.log('Break!')
+    console.log(this.countryRegionList)
   }
 }
 </script>
@@ -73,14 +83,22 @@ export default {
         />
       </div>
       <div class="form__column-left__element">
-        <label class="form__column-left__element__label" for="loading-place">Yükleme yeri</label>
-        <input
-          class="form__column-left__element__input"
-          type="text"
-          name="loadingPlace"
-          id="loading-place"
-          v-model="loadingPlace"
-        />
+        <label class="form__column-left__element__label" for="country-code">Yukleme yeri</label>
+
+        <select name="country-code" id="country-code">
+          <option value="">Select country code</option>
+          <option
+            v-for="country in countryRegionList"
+            :key="country.countryShortCode"
+            :value="country.countryShortCode"
+          >
+            {{ country.countryShortCode }}
+          </option>
+        </select>
+
+        <select name="city" id="city">
+          <option value=""></option>
+        </select>
       </div>
       <div class="form__column-left__element">
         <label class="form__column-left__element__label" for="unloading-place">Boşaltma yeri</label>
