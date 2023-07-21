@@ -1,5 +1,6 @@
 <script>
 import countryDataJSON from 'country-region-data/data.json'
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -19,7 +20,8 @@ export default {
       returnPaymentDate: '',
       returnReceived: '',
       returnRemaining: '',
-      countryRegionList: []
+      countryRegionList: [],
+      regions: []
     }
   },
   methods: {
@@ -36,8 +38,14 @@ export default {
           console.log('error', err)
         })
     },
-    loadCities() {
-      fetch()
+    loadCities(event) {
+      axios
+        .post('http://localhost:3000/city', {
+          countryCode: event.target.value
+        })
+        .then((response) => {
+          this.regions = response.data
+        })
     }
   },
   mounted() {
@@ -85,7 +93,7 @@ export default {
       <div class="form__column-left__element">
         <label class="form__column-left__element__label" for="country-code">Yukleme yeri</label>
 
-        <select name="country-code" id="country-code">
+        <select name="country-code" id="country-code" @change="loadCities">
           <option value="">Select country code</option>
           <option
             v-for="country in countryRegionList"
@@ -97,7 +105,9 @@ export default {
         </select>
 
         <select name="city" id="city">
-          <option value=""></option>
+          <option v-for="region in regions" :key="region.name" :value="region.name">
+            {{ region.name }}
+          </option>
         </select>
       </div>
       <div class="form__column-left__element">
